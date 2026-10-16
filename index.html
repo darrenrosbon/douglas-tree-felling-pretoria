@@ -218,10 +218,16 @@ main > section.facts { padding-bottom: 8px; }
 @media (min-width: 768px) { .reviews-grid { grid-template-columns: repeat(3, 1fr); } }
 
 /* ---------- Recent work: small photos, native aspect, never upscaled ---------- */
-.work-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 14px; margin-top: 32px; }
+.work-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; max-width: 900px; }
 .work-row figure { margin: 0; }
-.work-row img { height: 240px; width: auto; max-width: 100%; border-radius: var(--radius); border: 1px solid var(--line); }
-@media (min-width: 768px) { .work-row img { height: 320px; } }
+.work-row figure:first-child { grid-column: 1 / -1; }
+.work-row img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 5; border-radius: var(--radius); border: 1px solid var(--line); }
+.work-row figure:first-child img { aspect-ratio: 16 / 10; }
+@media (min-width: 768px) {
+  .work-row { grid-template-columns: 1.7fr 1fr 1fr; gap: 14px; }
+  .work-row figure:first-child { grid-column: auto; }
+  .work-row img, .work-row figure:first-child img { aspect-ratio: auto; height: 340px; }
+}
 
 /* ---------- Process ---------- */
 main > section.section.process { position: relative; isolation: isolate; overflow: hidden; color: var(--ink); padding-block: 128px 144px; }
@@ -522,9 +528,9 @@ footer ul li { padding: 5px 0; }
       <h2 class="reveal">Recent work</h2>
       <p class="lead reveal">A few jobs from our Google listing.</p>
       <div class="work-row">
-        <figure class="reveal"><img loading="lazy" decoding="async" src="img/dg-log-640.webp" srcset="img/dg-log-360.webp 360w, img/dg-log-640.webp 640w" sizes="320px" width="640" height="480" alt="Large tree trunk cut into sections on a lawn"></figure>
-        <figure class="reveal"><img loading="lazy" decoding="async" src="img/dg-palms-640.webp" srcset="img/dg-palms-360.webp 360w, img/dg-palms-640.webp 640w" sizes="190px" width="640" height="1138" alt="Two tall palm trees beside a garden wall"></figure>
-        <figure class="reveal"><img loading="lazy" decoding="async" src="img/dg-climb-640.webp" srcset="img/dg-climb-360.webp 360w, img/dg-climb-640.webp 640w" sizes="170px" width="640" height="1422" alt="Team member trimming the top of a tall palm from a ladder"></figure>
+        <figure class="reveal"><img loading="lazy" decoding="async" src="img/dg-log-640.webp" srcset="img/dg-log-360.webp 360w, img/dg-log-640.webp 640w" sizes="(min-width: 768px) 520px, 100vw" width="640" height="480" alt="Large tree trunk cut into sections on a lawn"></figure>
+        <figure class="reveal"><img loading="lazy" decoding="async" src="img/dg-palms-640.webp" srcset="img/dg-palms-360.webp 360w, img/dg-palms-640.webp 640w" sizes="(min-width: 768px) 300px, 50vw" width="640" height="1138" alt="Two tall palm trees beside a garden wall"></figure>
+        <figure class="reveal"><img loading="lazy" decoding="async" src="img/dg-climb-640.webp" srcset="img/dg-climb-360.webp 360w, img/dg-climb-640.webp 640w" sizes="(min-width: 768px) 300px, 50vw" width="640" height="1422" alt="Team member trimming the top of a tall palm from a ladder"></figure>
       </div>
     </div>
   </section>
